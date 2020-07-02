@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slide Nav simple example</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />    
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+    </defs>
+</svg>
+<body>
+    <div class="nav">
+        <nav>
+            <a href="#section1">Home</a>
+            <a href="#section2">Events</a>
+            <a href="#section3">Births</a>
+            <a href="#section4">Deaths</a>
+        </nav>
+    </div>
+    <div id="section1" class="section">
+        <main>
+        <input type="text"  id="userinput" class="search" />
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+        </main>
+         <div onclick="userInput()" class="enter">SEARCH</div>
+    </div>
+    <div id="section2" class="section">
+            <div class="edit">1973</div>
+                <h1>
+                    <div class="goo">Are
+                    </div>
+                </h1>
+            </div>
+    <div id="section3" class="section">
+
+            <div class="edit">1973</div>
+                <h1>
+                    <div class="goo">Are</div>
+                </h1>
+    </div>
+    <div id="section4" class="section">
+            <div class="edit">1973</div>
+                <h1>
+                    <div class="goo">Are</div>
+                </h1>
+    </div>
+</body>
+</html>
+<script src="dist/slideNav.js" type="text/javascript"></script>
+    <script>
+        window.slide = new SlideNav({
+        changeHash: true    
+        });
+    </script>
+<style>
+    :root {
+    --color-bg: #34304c;
+    --color-bg2: #534d7a;
+    --color-highlight: #fff;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.goo {
+    line-height: 2.35;
+    display: inline;
+    box-decoration-break: clone;
+    background: var(--color-highlight);
+    padding: 0.5rem 1rem;
+    filter: url('#goo');
+    margin-left: 30px;
+}
+
+.goo:focus {
+    outline: 0;
+}
+
+.edit {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--color-bg2);
+    text-transform: uppercase;
+    color: var(--color-highlight);
+    border-radius: 1em;
+    margin-left: 30px;
+}
+@media screen and (min-width: 601px) {
+  .goo {
+    font-size: 1.3rem;
+    padding: 0.5rem 1rem;
+  }
+  .edit{
+    font-size: 1.2rem;
+}   
+ .nav a{
+    padding: 15px 30px;
+ }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  .goo {
+    font-size: 0.7rem;
+    padding: 0.8rem 0.5rem;
+  }
+  .edit{
+    font-size:0.6rem; 
+  }
+  .nav a{
+    padding: 2px 5px;
+ }
+}
+</style>
+<style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+main {
+    width: auto;
+    height: auto;
+}
+
+::selection {
+    background: #16a085;
+    color: #fff;
+}
+.enter{ 
+  width: 80px; 
+  height:40px;
+  display:block;
+  background-color:#333;
+  text-align: center;
+  line-height: 29px;
+  border-radius:2px; 
+  cursor: pointer;
+  transition: box-shadow 0.7s ease;
+  visibility: hidden;
+  margin-left: 50%;
+  position: relative;
+  top:10px;
+}
+.enter:hover{box-shadow:0px 0px 10px #14B524;}
+
+.line-1 {
+    width: 5px;
+    height: 40px;
+    background: #fff;
+    position: absolute;
+    left: 45px;
+    top: -20px;
+    transform: rotate(-45deg);
+    transition: 0s;
+    transition-timing-function: cubic-bezier(1,0,.3,1);
+    cursor: pointer;
+    margin-left: 51%;
+    margin-top: 22%;
+}
+.line-2 {
+    width: 5px;
+    height: 0px;
+    background: #fff;
+    transform: rotate(-45deg);
+    position: absolute;
+    opacity: 0;
+    transition: 0s ease-in-out;
+    transition-timing-function: cubic-bezier(1,0,.3,1);
+    cursor: pointer;
+    margin-left: 51%;
+}
+.search {
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 100px;
+    border: 5px solid #fff;
+    border-radius: 100px;
+    transition: 0s;
+    transition-timing-function:cubic-bezier(1,-0.5,0,1.5);
+    box-sizing: border-box;
+    padding-left: 15px;
+    outline: none;
+    font-size: 32px;
+    background: transparent;
+    margin-top: 220px;
+    margin-left: 48%;
+}
+.active2 {
+    width: 500px;
+    height: 100px;
+    border: 5px solid #fff;
+    border-radius: 20px;
+    margin-top: 220px;
+    padding-left: 10px;
+    transition: 0.7s;
+    margin-left: 35%;
+}
+</style>
+<script>
+    //$(window).resize(function () {
+    if($(window).width()<600)
+    {
+        $('.search').css({
+            'width':'50px',
+            'height':'50px',
+            'margin-left':'45%',
+            'margin-top':'40%'
+        });
+        $('.line-1').css({
+            'margin-left':'45%',
+            'margin-top':'76%',
+            'height':'20px'
+        });
+        $('.search').click(function(){
+            $('.search').css({
+                'width':'250px',
+                'height':'40px',
+                'transition':'0.5s',
+                'margin-left':'25%',
+                'font-size':'12px'
+            });
+            $('.line-1').css({
+                        'transform': 'rotate(45deg)',
+                        'transition':'0.7s',
+                        'margin-left':'30%',
+                        'margin-top':'80%',
+                        'width':'3px'
+                });
+            $('.line-2').css({
+                         'height':'20px',
+                        'opacity':'1',
+                        'transition':'0.7s',
+                        'margin-top':'2.7%',
+                        'margin-left':'42%',
+                        'width':'3px'
+                });
+             $('.enter').css({
+                    'visibility':'visible',
+                    'width':'70px',
+                    'height':'30px',
+                });
+        });
+        $('.line-1, .line-2').click(function() {
+            $('.search').css({
+            'width':'50px',
+            'height':'50px',
+            'margin-left':'45%',
+            'margin-top':'40%'
+        });
+        $('.line-1').css({
+            'transform': 'rotate(-45deg)',
+            'margin-left':'45%',
+            'margin-top':'76%',
+            'height':'20px'
+        });
+        $('.line-2').css({
+                        'height':'0px',
+                        'opacity':'0',
+                        'transition':'0.7s'
+        });
+        $('.enter').css({
+                    'visibility':'hidden'
+        });
+        });
+    }
+    else
+    {
+        $('.search').click(function() {
+                $('.search').addClass('active2');
+                $('.line-1').css({
+                        'transform': 'rotate(45deg)',
+                        'transition':'0.7s',
+                        'margin-left':'41%',
+                        'margin-top':'24%'
+                });
+                $('.line-2').css({
+                        'height':'40px',
+                        'opacity':'1',
+                        'transition':'0.7s',
+                        'margin-top':'1%',
+                        'margin-left':'44%'
+                });
+                $('.enter').css({
+                    'visibility':'visible',
+                });
+        });
+        $('.line-1, .line-2').click(function() {
+                $('.search').removeClass('active2').val('');
+                $('.line-1').css({
+                        'transform': 'rotate(-45deg)',
+                        'transition':'0.7s',
+                        'margin-left':'51%',
+                        'margin-top':'22%'
+                });
+                $('.line-2').css({
+                        'height':'0px',
+                        'opacity':'0',
+                        'transition':'0.7s'
+                });
+                $('.enter').css({
+                    'visibility':'hidden'
+                });
+        });
+    }
+  //  });
+</script>
+<script>
+    var rawdata;
+    var Oraganized_rawdata;
+    var events;
+    var date=new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var day=date.getDate();
+    var month=months[date.getMonth()];
+    var year;
+    var info;
+    var births;
+    var deaths;
+    function ifchanged()
+{
+   // document.getElementById("data").innerHTML=day+"-"+month;
+    var url='https://en.wikipedia.org/w/api.php?action=parse&prop=wikitext&format=json&page='+month+'_'+day+'#Events';
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    var request = new XMLHttpRequest();
+    request.open('GET',proxyurl+url);
+    request.responseType = 'json';
+//  request.addHeader("Access-Control-Allow-Origin", "*");
+    request.send();
+    var onday=request.response;
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+         rawdata = JSON.parse(this.responseText);
+         rawdata=rawdata.parse.wikitext["*"];
+        //document.getElementById("data2").innerHTML =rawdata;
+        Oraganized_rawdata=rawdata.split("Births");
+        events=Oraganized_rawdata[0].split("*");
+        console.log(events);
+        Oraganized_rawdata=Oraganized_rawdata[1].split("Deaths");
+        births=Oraganized_rawdata[0].split("*");
+        deaths=Oraganized_rawdata[1].split("*");
+       // document.getElementById("data2").innerHTML=events[25];
+       var yr = document.getElementsByClassName("edit");
+       var inf= document.getElementsByClassName("goo");
+       for(let i=0;i<events.length-2;i++)
+        {
+            $("#section2").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1>');
+        }
+        for(let i=0;i<(births.length/4);i++)
+        {
+            $("#section3").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1>');
+        }
+        for(let i=0;i<(deaths.length/4);i++)
+        {
+            $("#section4").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1>');
+        }
+        var k=0;
+       for(;k<events.length-2;k++)
+       {      
+       let temp1=events[k+1].replace(/\[\[|\]\]/gi, "");
+       let temp2=temp1.split("&ndash;");
+       if(day==10 && month=="October" && k==0)
+       {
+       yr[k].innerHTML="1998";
+       inf[k].innerHTML="The man, The myth, The legend";
+       }
+       else
+       {
+       yr[k].innerHTML =temp2[0];
+       inf[k].innerHTML=temp2[1];
+       }
+       }
+       console.log(k +" "+events.length);
+       for(let i=0;i<(births.length/4);k++,i++)
+       {
+       let temp1=births[i+1].replace(/\[\[|\]\]/gi, "");
+       let temp2=temp1.split("&ndash;");
+       yr[k].innerHTML =temp2[0];
+       inf[k].innerHTML=temp2[1];
+       }
+       for(let i=0;i<(deaths.length/4);k++,i++)
+       {
+       let temp1=deaths[i+1].replace(/\[\[|\]\]/gi, "");
+       let temp2=temp1.split("&ndash;");
+       yr[k].innerHTML =temp2[0];
+       inf[k].innerHTML=temp2[1];
+       }
+    }
+};
+xmlhttp.open("GET",proxyurl+url, true);
+xmlhttp.send();
+}
+
+
+ifchanged();
+
+function userInput() {
+    var input=document.getElementById("userinput").value;
+    input=input.split("-");
+    day=input[0];
+    month=input[1];
+    $("div").remove(".edit,.goo");
+    $("#section2").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1></div>');
+    $("#section3").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1></div>');
+    $("#section4").append('<div class="edit">1973</div><h1><div class="goo">Are</div></h1></div>');
+    ifchanged();
+}
+</script>
